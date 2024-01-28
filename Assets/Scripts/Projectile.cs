@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
         if (FireRay()){
             detectNext.LoadScene();
         }
-        //include a function that gives the player victory if FireRay() returns true and moves them to the next level, else give them a game over screen otherwise;
+        //Load game over screen
     }
 
     IEnumerator waiter()
