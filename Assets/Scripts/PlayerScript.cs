@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    boolean acted;
-    boolean blocking;
+    bool acted;
+    bool blocking;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +12,7 @@ public class PlayerScript : MonoBehaviour
         blocking = false;
     }
 
-    boolean isBlocking() {
+    bool isBlocking() {
         return blocking;
     }
 
