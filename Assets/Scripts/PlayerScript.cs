@@ -13,6 +13,10 @@ public class PlayerScript : MonoBehaviour
         blocking = false;
     }
 
+    boolean isBlocking() {
+        return blocking;
+    }
+
     // Update is called once per frame
     void Update()
     {
