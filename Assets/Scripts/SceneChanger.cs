@@ -18,7 +18,8 @@ public class SceneChanger: MonoBehaviour
     //It will add the new scene to the sceneHistory list
     public void LoadScene()
     {
-        SceneManager.LoadScene(this.scene);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
  
     //Call this whenever you want to load the previous scene
