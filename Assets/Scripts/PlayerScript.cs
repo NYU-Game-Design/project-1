@@ -5,6 +5,7 @@ public class PlayerScript : MonoBehaviour
 {
     bool acted;
     bool blocking;
+    SpriteRenderer m_SpriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +23,19 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKey("space") && !acted) {
             acted = true;
             blocking = true;
+            Debug.Log("Blocking");
             StartCoroutine(waiting());
-            blocking = false;
+            //blocking = false;
         }
     }
 
     IEnumerator waiting()
     {
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_SpriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.5f);
+        m_SpriteRenderer.color = Color.white;
+        blocking = false;
+        Debug.Log("Done Blocking: " + blocking);
     }
 }
