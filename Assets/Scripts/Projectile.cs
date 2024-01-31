@@ -16,15 +16,20 @@ public class Projectile : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(waiter());
 
-        //Load game over screen
     }
 
     IEnumerator waiter()
     {
-        yield return new WaitForSeconds(Random.Range(1f, 7f));
-        audioSource.Play();
-        bulletInst = Instantiate(projectilePrefab, projectilePoint.position, projectilePoint.rotation);
+        while (true) {
+            yield return new WaitForSeconds(Random.Range(2f, 5f));
+            audioSource.Play();
+            bulletInst = Instantiate(projectilePrefab, projectilePoint.position, projectilePoint.rotation);
+            yield return new WaitForSeconds(1f);
+        }
+        
+        
     }
+    
 
     // Update is called once per frame
     void Update()

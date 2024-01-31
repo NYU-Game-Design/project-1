@@ -12,6 +12,10 @@ public class ProjectileMovement : MonoBehaviour
         rb.velocity = transform.right * speed;
     }
 
+    void OnTriggerEnter2D(Collider2D other) {
+        Destroy(this.gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {

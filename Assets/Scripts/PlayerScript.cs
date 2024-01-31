@@ -28,24 +28,26 @@ public class PlayerScript : MonoBehaviour
             perfect = true;
             Debug.Log("Blocking");
             StartCoroutine(waiting());
-            //blocking = false;
+            
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        m_SpriteRenderer.color = Color.blue;
         if (other.tag == "Enemy" && blocking && perfect) {
-            //Add scenechanger success
+            //score increase by 10
             Debug.Log("damage trigger");
         }
         else if (other.tag == "Enemy" && blocking) {
+            //score increase by 5
             Debug.Log("damage trigger");
         }
         else if (other.tag == "Enemy" && !blocking) {
-
+            //game over
         }
         Destroy(other.gameObject);
+        StartCoroutine(resetBlocking());
     }
 
     IEnumerator waiting()
