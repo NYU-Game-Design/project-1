@@ -14,7 +14,6 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         StartCoroutine(waiter());
-        bulletInst = Instantiate(projectilePrefab, projectilePoint.position, projectilePoint.rotation);
 
         //Load game over screen
     }
@@ -22,6 +21,7 @@ public class Projectile : MonoBehaviour
     IEnumerator waiter()
     {
         yield return new WaitForSeconds(Random.Range(1f, 7f));
+        bulletInst = Instantiate(projectilePrefab, projectilePoint.position, projectilePoint.rotation);
     }
 
     // Update is called once per frame

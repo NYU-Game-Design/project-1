@@ -29,6 +29,15 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        if (other.tag == "Enemy" && blocking) {
+            //Add scenechanger success
+            Debug.Log("damage trigger");
+        }
+    }
+
     IEnumerator waiting()
     {
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
