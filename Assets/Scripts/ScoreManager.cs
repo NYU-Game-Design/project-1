@@ -23,6 +23,10 @@ public class ScoreManager : MonoBehaviour
     {
         score += amount;
     }
+    public void DecreaseScore(float amount)
+    {
+        score -= amount;
+    }
     public void UpdateScoreDisplay()
     {
         scoreText.text = string.Format("Score: {0:00000}", displayScore);

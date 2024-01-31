@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -65,6 +66,15 @@ public class PlayerScript : MonoBehaviour
             else
             {
                 audioSource.PlayOneShot(damage2);
+            }
+            if (ScoreManager.Instance.score < 0f) {
+                SceneManager.LoadScene("YouLose", LoadSceneMode.Single);
+            }
+            if (ScoreManager.Instance.score >= 100f) {
+                ScoreManager.Instance.DecreaseScore(ScoreManager.Instance.score);
+            }
+            else {
+                ScoreManager.Instance.DecreaseScore(100);
             }
         }
     }
