@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour
         acted = false;
         blocking = false;
         perfect = false;
+        parried = false;
     }
 
     bool isBlocking() {
@@ -40,8 +41,8 @@ public class PlayerScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        parried = true;
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
-        m_SpriteRenderer.color = Color.white;
         if (other.tag == "Enemy" && blocking && perfect) {
             m_SpriteRenderer.color = Color.magenta;
             Debug.Log("damage trigger");
@@ -66,22 +67,26 @@ public class PlayerScript : MonoBehaviour
                 audioSource.PlayOneShot(damage2);
             }
         }
-        acted = false;
-        m_SpriteRenderer.color = Color.white;
-        Debug.Log("Reset Blocking: " + blocking);
     }
 
     IEnumerator waiting()
     {
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_SpriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         perfect = false;
         
         yield return new WaitForSeconds(0.25f);
         m_SpriteRenderer.color = Color.grey;
         blocking = false;
         Debug.Log("Done Blocking: " + blocking);
+
+        if (parried) {
+            acted = false;
+            m_SpriteRenderer.color = Color.white;
+            parried = false;
+            Debug.Log("Reset Blocking: " + blocking);
+        }
     }
 
 }
