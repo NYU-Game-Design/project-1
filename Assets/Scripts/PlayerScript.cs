@@ -8,9 +8,15 @@ public class PlayerScript : MonoBehaviour
     bool perfect;
     bool parried;
     SpriteRenderer m_SpriteRenderer;
+    // sound effects
+    public AudioSource audioSource;
+    public AudioClip parry;
+    public AudioClip damage1;
+    public AudioClip damage2;
     // Start is called before the first frame update
     void Start()
     {
+        //audioSource = GetComponent<AudioSource>();
         acted = false;
         blocking = false;
         perfect = false;
@@ -38,16 +44,27 @@ public class PlayerScript : MonoBehaviour
         m_SpriteRenderer.color = Color.white;
         if (other.tag == "Enemy" && blocking && perfect) {
             m_SpriteRenderer.color = Color.magenta;
-            ScoreManager.Instance.IncreaseScore(50);
             Debug.Log("damage trigger");
+            audioSource.PlayOneShot(parry);
+            ScoreManager.Instance.IncreaseScore(50);
         }
         else if (other.tag == "Enemy" && blocking) {
             m_SpriteRenderer.color = Color.magenta;
-            ScoreManager.Instance.IncreaseScore(20);
             Debug.Log("damage trigger");
+            audioSource.PlayOneShot(parry);
+            ScoreManager.Instance.IncreaseScore(20);
         }
         else if (other.tag == "Enemy" && !blocking) {
             //game over
+            // 50% chance of playing damage1 or damage2
+            if (Random.Range(0, 2) == 0)
+            {
+                audioSource.PlayOneShot(damage1);
+            }
+            else
+            {
+                audioSource.PlayOneShot(damage2);
+            }
         }
         acted = false;
         m_SpriteRenderer.color = Color.white;
