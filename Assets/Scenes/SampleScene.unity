@@ -675,7 +675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePoint: {fileID: 636637943}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 2495841854846217224, guid: 257dc8f512537a743b7ce52e38cc525f, type: 3}
 --- !u!1 &1963317023
 GameObject:
   m_ObjectHideFlags: 0
