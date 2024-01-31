@@ -64,8 +64,8 @@ public class PlayerScript : MonoBehaviour
 
     IEnumerator resetBlocking()
     {
-        yield return new WaitForSeconds(0.5f);
-        blocking = true;
+        yield return new WaitForSeconds(1.5f);
+        acted = false;
         m_SpriteRenderer.color = Color.white;
         Debug.Log("Reset Blocking: " + blocking);
     }
