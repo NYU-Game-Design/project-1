@@ -67,7 +67,7 @@ public class PlayerScript : MonoBehaviour
             {
                 audioSource.PlayOneShot(damage2);
             }
-            if (ScoreManager.Instance.score < 0f) {
+            if (ScoreManager.Instance.score <= 0f) {
                 SceneManager.LoadScene("YouLose", LoadSceneMode.Single);
             }
             if (ScoreManager.Instance.score >= 100f) {
