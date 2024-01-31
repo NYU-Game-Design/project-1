@@ -10,6 +10,10 @@ public class ScoreManager : MonoBehaviour
     public float transitionSpeed = 100;
     float displayScore;
     public Text scoreText;
+    void Awake()
+    {
+        Instance = this;
+    }
     private void Update()
     {
         displayScore = Mathf.MoveTowards(displayScore, score, transitionSpeed * Time.deltaTime);
