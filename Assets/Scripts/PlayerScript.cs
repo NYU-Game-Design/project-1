@@ -32,9 +32,9 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        m_SpriteRenderer.color = Color.blue;
+        
         if (other.tag == "Enemy" && blocking && perfect) {
             //score increase by 10
             Debug.Log("damage trigger");
@@ -46,7 +46,6 @@ public class PlayerScript : MonoBehaviour
         else if (other.tag == "Enemy" && !blocking) {
             //game over
         }
-        Destroy(other.gameObject);
         StartCoroutine(resetBlocking());
     }
 
@@ -54,7 +53,7 @@ public class PlayerScript : MonoBehaviour
     {
         m_SpriteRenderer = GetComponent<SpriteRenderer>();
         m_SpriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.1f);
         perfect = false;
         m_SpriteRenderer.color = Color.magenta;
         yield return new WaitForSeconds(0.25f);
