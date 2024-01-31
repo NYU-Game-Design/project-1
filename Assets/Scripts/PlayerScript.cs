@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
     bool acted;
     bool blocking;
     bool perfect;
+    bool parried;
     SpriteRenderer m_SpriteRenderer;
     // Start is called before the first frame update
     void Start()
@@ -28,25 +29,29 @@ public class PlayerScript : MonoBehaviour
             perfect = true;
             Debug.Log("Blocking");
             StartCoroutine(waiting());
-            
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        
+        m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        m_SpriteRenderer.color = Color.white;
         if (other.tag == "Enemy" && blocking && perfect) {
-            //score increase by 10
+            m_SpriteRenderer.color = Color.magenta;
+            ScoreManager.Instance.IncreaseScore(50);
             Debug.Log("damage trigger");
         }
         else if (other.tag == "Enemy" && blocking) {
-            //score increase by 5
+            m_SpriteRenderer.color = Color.magenta;
+            ScoreManager.Instance.IncreaseScore(20);
             Debug.Log("damage trigger");
         }
         else if (other.tag == "Enemy" && !blocking) {
             //game over
         }
-        StartCoroutine(resetBlocking());
+        acted = false;
+        m_SpriteRenderer.color = Color.white;
+        Debug.Log("Reset Blocking: " + blocking);
     }
 
     IEnumerator waiting()
@@ -55,18 +60,11 @@ public class PlayerScript : MonoBehaviour
         m_SpriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         perfect = false;
-        m_SpriteRenderer.color = Color.magenta;
+        
         yield return new WaitForSeconds(0.25f);
         m_SpriteRenderer.color = Color.grey;
         blocking = false;
         Debug.Log("Done Blocking: " + blocking);
     }
 
-    IEnumerator resetBlocking()
-    {
-        yield return new WaitForSeconds(1.5f);
-        acted = false;
-        m_SpriteRenderer.color = Color.white;
-        Debug.Log("Reset Blocking: " + blocking);
-    }
 }
